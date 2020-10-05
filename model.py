@@ -3,12 +3,12 @@ from sklearn.linear_model import PassiveAggressiveClassifier
 import itertools
 from sklearn.metrics import accuracy_score, confusion_matrix
 import pandas as pd
-from DataHandler import DataHandler
+from data_handler import DataHandler
 
 class Model:
 
     def getData(self):
-        data = DataHandler('/home/mohsen/datascience/fake-news/data/news.csv', pd.DataFrame())
+        data = DataHandler('data/news.csv', pd.DataFrame())
         return data
 
 
@@ -19,6 +19,7 @@ class Model:
         predict_model = model.predict(test_vectors)
         accuracy = accuracy_score(y_test, predict_model)
         print(f'Accuracy: {round(accuracy * 100, 2)}%')
+        print("Confusion Matrix for model is: ")
         print(confusion_matrix(y_test, predict_model, labels=['FAKE', 'REAL']))
 
 
